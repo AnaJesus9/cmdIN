@@ -6,6 +6,7 @@ public interface FileManagerInt {
 
     void read(ProfileManager profileManager);
 
+
     void write(ProfileManager profileManager);
 
 }
