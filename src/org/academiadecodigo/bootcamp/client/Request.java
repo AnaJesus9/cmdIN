@@ -10,7 +10,7 @@ public class Request {
 
     private PrintWriter output;
     private BufferedReader input;
-    
+
 
     public Request(Socket socket) throws IOException {
         this.output = new PrintWriter(socket.getOutputStream());
@@ -20,6 +20,18 @@ public class Request {
     public boolean login(String userName, String password) throws IOException {
         output.println(userName + " " + password + "\n");
 
-        return (input.readLine() == "logOn");
+        if (input.readLine() == "logOn") {
+            System.out.println(getName() + " logged on successfully.");
+            return true;
+        }
+
+        System.out.println("Your username or password is incorrect.");
+        return false;
+    }
+
+    public String getName() throws IOException {
+        output.println("get name");
+
+        return input.readLine();
     }
 }

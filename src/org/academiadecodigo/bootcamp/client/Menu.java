@@ -14,14 +14,11 @@ public class Menu {
     private final String[] LOGIN = {"Login", "Register"};
     private final String[] MAIN_MENU = {"Edit Profile", "Search" , "Quit"};
     private Prompt prompt;
-    private PrintWriter output;
-    private BufferedReader input;
+    private Request request;
 
 
     public Menu(Socket socket) throws IOException {
         this.prompt = new Prompt(System.in, System.out);
-        this.output = new PrintWriter(socket.getOutputStream());
-        this.input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
     }
 
     public Integer getLogin() throws IOException{
@@ -30,16 +27,16 @@ public class Menu {
         input.setMessage("Welcome to cmdIN\n What do you wanna do?");
         switch (prompt.getUserInput(input)) {
             case 1:
-                requestLogin();
+                dispatchLogin();
                 break;
             case 2:
-                requestRegisterData();
+                dispatchRegister();
                 break;
         }
         return prompt.getUserInput(input);
     }
 
-    private void requestLogin() throws IOException {
+    private void dispatchLogin() throws IOException {
         StringInputScanner inputUser = new StringInputScanner();
         PasswordInputScanner inputPassword = new PasswordInputScanner();
 
@@ -47,35 +44,26 @@ public class Menu {
         String password = "";
 
         inputUser.setMessage("Enter your username: ");
+        inputPassword.setMessage("Enter your password: ");
 
-        while (!(validateUser(userName = prompt.getUserInput(inputUser),
-                password = prompt.getUserInput(inputPassword)))) {
-
-            System.out.println("Invalid username or password.");
+        while (!request.login(userName, password)) {
+            prompt.getUserInput(inputUser);
+            prompt.getUserInput(inputPassword);
         }
         getMainMenu(userName);
     }
 
 
 
-    private void requestRegisterData() {
+    private void dispatchRegister() {
 
     }
 
-    private boolean validateUser(String userName, String password) throws IOException{
-        String login = "user: user, password: password\n";
-
-        output.println(login);
-        return (input.readLine() == "true");
-    }
-
-    private void getMainMenu(String userName) {
+    private void getMainMenu(String userName) throws IOException {
         MenuInputScanner inputOption = new MenuInputScanner(MAIN_MENU);
-        String name = request.getName;
-
+        String name = request.getName();
 
         inputOption.setMessage("### Welcome " + name + ", your on the Main Menu ###");
-
+        prompt.getUserInput(inputOption);
     }
-
 }
