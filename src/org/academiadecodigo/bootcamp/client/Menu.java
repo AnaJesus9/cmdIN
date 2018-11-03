@@ -65,7 +65,15 @@ public class Menu {
         welcomeMessage.append("### Enjoy cmdIN ###\n");
         System.out.println(welcomeMessage.toString());
 
-        prompt.getUserInput(input);
+        switch (prompt.getUserInput(input)) {
+            case 1:
+                getEditMenu();
+                break;
+            case 2:
+                getSearchMenu();
+                break;
+            case 3:
+        }
 
 
     }
@@ -77,4 +85,6 @@ public class Menu {
         inputOption.setMessage("### Welcome " + name + ", your on the Main Menu ###");
         prompt.getUserInput(inputOption);
     }
+
+
 }
