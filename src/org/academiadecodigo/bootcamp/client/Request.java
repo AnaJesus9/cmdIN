@@ -54,7 +54,7 @@ public class Request {
     public boolean writeUserName(String userName) throws IOException {
         output.println("post userName " + userName);
 
-        return (input.readLine() == "ok");
+        return (input.readLine().equals("ok"));
     }
 
     public String getName(String userName) throws IOException {
@@ -66,11 +66,11 @@ public class Request {
     public boolean writeName(String name) throws IOException {
         output.println("post name " + name);
 
-        return (input.readLine() == "ok");
+        return (input.readLine().equals("ok"));
     }
 
-    public int getAge() throws IOException {
-        output.println("get age");
+    public int getAge(String userName) throws IOException {
+        output.println("get::userName::age");
 
         return Integer.parseInt(input.readLine());
     }
@@ -78,7 +78,7 @@ public class Request {
     public boolean writeAge(int age) throws IOException {
         output.println("post age " + age);
 
-        return (input.readLine() == "ok");
+        return (input.readLine().equals("ok"));
     }
 
     public String getBirthday() throws IOException {
@@ -90,8 +90,9 @@ public class Request {
     public boolean writeBirthday(String birthday) throws IOException {
         output.println("post birthday " + birthday);
 
-        return (input.readLine() == "ok");
+        return (input.readLine().equals("ok"));
     }
+
     public String getMessage() throws IOException {
         output.println("get message");
 
@@ -101,6 +102,6 @@ public class Request {
     public boolean writeMessage(String message) throws IOException {
         output.println("post message " + message);
 
-        return (input.readLine() == "ok");
+        return (input.readLine().equals("ok"));
     }
 }
