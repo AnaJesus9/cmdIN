@@ -5,6 +5,8 @@ public enum Command {
     LOGIN(new LoginRequest()),
     GETDATA(new GetDataRequest()),
     POSTDATA(new PostDataRequest()),
+    CREATEPROFILE(new NewProfileRequest()),
+    QUIT(new QuitAnalyzer()),
     ERROR(new Error());
 
 
@@ -28,6 +30,10 @@ public enum Command {
 
         if(requestHandler[0].equals("post")) {
             return POSTDATA;
+        }
+
+        if (requestHandler[0].equals("create")) {
+            return CREATEPROFILE;
         }
 
 

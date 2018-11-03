@@ -2,13 +2,11 @@ package org.academiadecodigo.bootcamp.server.requestAnalyze;
 
 import org.academiadecodigo.bootcamp.server.profiles.ProfileManager;
 
-public class GetDataRequest implements RequestAnalyzer {
+public class NewProfileRequest implements RequestAnalyzer {
 
 
     @Override
     public String analyze(ProfileManager profileManager, String request) {
-        String[] requestHandler = request.split(" ");
-
-        return requestHandler[1];
+        return "success";
     }
 }

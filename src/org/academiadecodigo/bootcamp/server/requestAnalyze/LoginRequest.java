@@ -10,6 +10,7 @@ public class LoginRequest implements RequestAnalyzer {
 
         //compare request userName and password to existing usernames and corresponding passwords
 
+
         for (Profile profile: profileManager.getProfiles().values()) {
             if (profile.getUsername().equals(request) /* && requestPass = userPass */) {
                 return "validLogin";

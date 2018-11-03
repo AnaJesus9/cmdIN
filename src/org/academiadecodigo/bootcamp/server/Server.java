@@ -84,7 +84,6 @@ public class Server {
         private void read() {
             try {
                 String message = in.readLine();
-
                 analyzer = Command.getRequestType(message).getAnalyzer();
                 respond(analyzer.analyze(profileManager, message));
             } catch (IOException e) {
@@ -101,11 +100,10 @@ public class Server {
 
             initStreams();
 
-            while (!socket.isBound()) {
+            while (!socket.isClosed()) {
                 read();
             }
 
-            close();
         }
 
         public void close() {
