@@ -28,9 +28,8 @@ public class Client {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            closeSocket();
+           client.closeSocket();
         }
-
 
     }
 
@@ -52,4 +51,4 @@ public class Client {
             }
         }
     }
-}
+

@@ -29,9 +29,27 @@ public class Request {
         return false;
     }
 
-    public String getName() throws IOException {
-        output.println("get name");
+    public boolean register(String userName, String name, String password) {
 
-        return input.readLine();
+        output.println("register " + userName + " " + name + " " + password + "\n");
+
+        try {
+            if (input.readLine() == "Register") {
+                System.out.println(getName() + " register on successfully.");
+                return true;
+
+            } System.out.println("Your username or password is incorrect.");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("This username already exist.");
+        return false;
     }
-}
+
+    public String getName () throws IOException {
+            output.println("get name");
+
+            return input.readLine();
+        }
+    }

@@ -47,8 +47,9 @@ public class Menu {
         inputPassword.setMessage("Enter your password: ");
 
         while (!request.login(userName, password)) {
-            prompt.getUserInput(inputUser);
-            prompt.getUserInput(inputPassword);
+
+            userName = prompt.getUserInput(inputUser);
+            password = prompt.getUserInput(inputPassword);
         }
         getMainMenu(userName);
     }
@@ -70,7 +71,7 @@ public class Menu {
                 getEditMenu();
                 break;
             case 2:
-                getSearchMenu();
+                //getSearchMenu();
                 break;
             case 3:
         }
