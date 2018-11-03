@@ -3,6 +3,8 @@ package org.academiadecodigo.bootcamp.server.profiles;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Profile {
+    @JsonProperty("password")
+    private String password;
     @JsonProperty("username")
     private String username;
     @JsonProperty("name")
@@ -14,12 +16,22 @@ public class Profile {
     @JsonProperty("message")
     private String message;
 
-    public Profile(String username, String name, int age, String birthday, String message){
+    public Profile(String password, String username, String name, int age, String birthday, String message){
+        this.password = password;
         this.username = username;
         this.name = name;
         this.age = age;
         this.birthday = birthday;
         this.message = message;
+    }
+
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getUsername() {
