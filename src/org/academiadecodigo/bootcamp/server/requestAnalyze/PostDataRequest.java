@@ -1,6 +1,5 @@
 package org.academiadecodigo.bootcamp.server.requestAnalyze;
 
-import org.academiadecodigo.bootcamp.scanners.integer.IntegerInputScanner;
 import org.academiadecodigo.bootcamp.server.Server;
 import org.academiadecodigo.bootcamp.server.profiles.Profile;
 import org.academiadecodigo.bootcamp.server.profiles.ProfileManager;
@@ -18,33 +17,31 @@ public class PostDataRequest implements RequestAnalyzer {
         String[] requestHandler = request.split(" ");
 
         if (requestHandler.length != 3) {
-            return "fail";
+            return "fail.";
         }
 
         String targetField = requestHandler[1];
         String updateContent = requestHandler[2];
 
-        Profile userProfile = profileManager.findByUsername();
+        Profile userProfile = profileManager.findByUsername(user.getProfile().getUsername());
         //return a message confirming whether data was updated successfully or not
 
         switch (targetField) {
             case "name":
                 userProfile.setName(updateContent);
-                return "ok";
+                return "Name updated.";
             case "birthday":
                 userProfile.setBirthday(updateContent);
-                return "ok";
+                return "birthday updated.";
             case "age":
                 int age = Integer.parseInt(requestHandler[2]);
                 userProfile.setAge(age);
-                return "ok";
+                return "Age updated.";
             case "message":
                 userProfile.setMessage(updateContent);
-                return "ok";
+                return "Message update.";
             default:
                 return "fail";
-
         }
-        return "fail";
     }
 }

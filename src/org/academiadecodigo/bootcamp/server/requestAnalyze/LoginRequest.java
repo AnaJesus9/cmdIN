@@ -10,19 +10,23 @@ public class LoginRequest implements RequestAnalyzer {
     public String analyze(ProfileManager profileManager, Server.ClientHandler sender, String request) {
 
         String[] requestHandler = request.split(" ");
-        if(requestHandler.length != 3) {
-            return "error";
+        if (requestHandler.length != 3) {
+            return "Error.";
         }
         String username = requestHandler[1];
         String password = requestHandler[2];
+        Profile profile = profileManager.findByUsername(username);
+        if (profile == null) {
 
-        for (Profile profile: profileManager.getProfiles().values()) {
-            if (profile.getUsername().equals(username) &&
-                    profile.getPassword().equals(password)) {
-                profile.setLoggedIn(true);
-                return "ok";
-            }
+            return "User doesn't exist.";
         }
-        return "fail";
+        if (profile.getUsername().equals(username) &&
+                profile.getPassword().equals(password)) {
+            sender.setProfile(profile);
+            return "Login was a success.";
+        } else {
+            return "Wrong username/password";
+        }
     }
 }
+

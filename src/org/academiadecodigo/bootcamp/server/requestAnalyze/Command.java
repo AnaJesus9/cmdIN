@@ -20,6 +20,10 @@ public enum Command {
 
         String[] requestHandler = request.split(" ");
 
+        if (requestHandler[0].equals("quit")){
+            return QUIT;
+        }
+
         if(requestHandler[0].equals("login")) {
             return LOGIN;
         }
@@ -35,10 +39,7 @@ public enum Command {
         if (requestHandler[0].equals("create")) {
             return CREATEPROFILE;
         }
-
-
         return ERROR;
-
     }
 
     public RequestAnalyzer getAnalyzer() {

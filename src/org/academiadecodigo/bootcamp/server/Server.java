@@ -1,6 +1,7 @@
 package org.academiadecodigo.bootcamp.server;
 
 import org.academiadecodigo.bootcamp.server.file.FileManagerInt;
+import org.academiadecodigo.bootcamp.server.profiles.Profile;
 import org.academiadecodigo.bootcamp.server.profiles.ProfileManager;
 import org.academiadecodigo.bootcamp.server.requestAnalyze.Command;
 import org.academiadecodigo.bootcamp.server.requestAnalyze.RequestAnalyzer;
@@ -74,6 +75,7 @@ public class Server {
         private RequestAnalyzer analyzer;
         private BufferedReader in;
         private PrintWriter out;
+        private Profile profile;
 
 
         ClientHandler(Socket socket) {
@@ -92,6 +94,10 @@ public class Server {
         private void read() {
             try {
                 String message = in.readLine();
+                if(message == null){
+                    close();
+                    return;
+                }
                 analyzer = Command.getRequestType(message).getAnalyzer();
                 respond(analyzer.analyze(profileManager, this, message));
             } catch (IOException e) {
@@ -111,7 +117,6 @@ public class Server {
             while (!socket.isClosed()) {
                 read();
             }
-
         }
 
         public void close() {
@@ -122,8 +127,15 @@ public class Server {
                 e.printStackTrace();
             }
         }
-    }
 
+        public void setProfile(Profile profile) {
+            this.profile = profile;
+        }
+
+        public Profile getProfile() {
+            return profile;
+        }
+    }
 }
 
 
