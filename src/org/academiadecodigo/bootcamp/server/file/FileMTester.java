@@ -7,9 +7,9 @@ public class FileMTester {
     public static void main(String[] args) {
         FileManager fileManager = new FileManager();
         ProfileManager profileManager = new ProfileManager();
-        System.out.println(profileManager.add(new Profile("anabsjesus", "Ana Jesus", 21, "11/10/97", "Je sius belle!")));
+        System.out.println(profileManager.add(new Profile("anabsjesus", "AnaJesus", "AnaJesus", 21, "11/10/97", "Je sius belle!")));
         //System.out.println(profileManager.add(new Profile("anabsjesus", "Ana Jesus", 21, "11/10/97", "Je sius belle!")));
-        System.out.println(profileManager.add(new Profile("bootcampter", "Bootcamp Terceira", 21, "11/10/97", "I am the best bootcamp!")));
+        System.out.println(profileManager.add(new Profile("bootcampter", "BootcampTerceira", "Botcamp", 21, "11/10/97", "I am the best bootcamp!")));
 
         System.out.println(profileManager.listAll());
 
