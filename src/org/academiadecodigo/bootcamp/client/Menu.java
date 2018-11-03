@@ -55,12 +55,18 @@ public class Menu {
 
 
 
-    private void dispatchRegister() {
+    public void dispatchRegister() {
+        MenuInputScanner input = new MenuInputScanner(MAIN_MENU);
+        input.setMessage("Choose an option:");
+
         StringBuilder welcomeMessage = new StringBuilder();
-        welcomeMessage.append("### Welcome to Register in cmdIN ###");
-        welcomeMessage.append("### Please fill the contents carefully ###");
-        welcomeMessage.append("Enjoy cmdIN");
+        welcomeMessage.append("### Welcome to Register in cmdIN ###\n");
+        welcomeMessage.append("### Please fill the contents carefully ###\n");
+        welcomeMessage.append("### Enjoy cmdIN ###\n");
         System.out.println(welcomeMessage.toString());
+
+        prompt.getUserInput(input);
+
 
     }
 
