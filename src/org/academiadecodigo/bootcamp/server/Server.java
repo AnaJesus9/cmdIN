@@ -59,6 +59,14 @@ public class Server {
 
     }
 
+    private void updateFile() {
+        file.write(profileManager);
+    }
+
+    private void readFile() {
+        file.read(profileManager);
+    }
+
 
     public class ClientHandler implements Runnable {
 

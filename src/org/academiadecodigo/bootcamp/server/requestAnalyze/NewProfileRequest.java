@@ -10,7 +10,7 @@ public class NewProfileRequest implements RequestAnalyzer {
     public String analyze(ProfileManager profileManager, String request) {
 
 
-        // request pattern: output.println("register " + userName + " " + name + " " + password + "\n");
+        // request format: output.println("register " + userName + " " + name + " " + password + "\n");
 
         String[] requestHandler = request.split(" ");
         if(requestHandler.length != 4) {
@@ -21,9 +21,10 @@ public class NewProfileRequest implements RequestAnalyzer {
         String name = requestHandler[2];
         String password = requestHandler[3];
 
-        Profile newProfile = new Profile(username,password,name);
+        Profile newProfile = new Profile(username,password,name, 0, "asd", "asd");
 
-        if (/*successful*/profileManager.add(newProfile)) {
+        String success = "You can't create a profile with this username.";
+        if (profileManager.add(newProfile).equals(success)) {
             return "ok";
         }
         return "fail";
