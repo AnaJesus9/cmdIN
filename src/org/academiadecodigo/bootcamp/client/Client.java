@@ -19,6 +19,7 @@ public class Client {
 
         try {
             client.establishConnection(args[0], Integer.parseInt(args[1]));
+            client.run();
 
         } catch (NumberFormatException e) {
             System.err.println("Invalid port number " + args[1]);
@@ -28,8 +29,10 @@ public class Client {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-           client.closeSocket();
+            client.closeSocket();
         }
+
+
 
     }
 
@@ -48,7 +51,20 @@ public class Client {
             }
         } catch (IOException e) {
                 System.out.println("Error closing connection: " + e.getMessage());
-            }
         }
     }
+
+    private void run() {
+        Request request = null;
+        Menu menu = null;
+
+        try {
+            request = new Request(socket);
+            menu = new Menu(request);
+            menu.getLogin();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
 

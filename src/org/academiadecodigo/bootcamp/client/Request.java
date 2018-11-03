@@ -13,15 +13,15 @@ public class Request {
 
 
     public Request(Socket socket) throws IOException {
-        this.output = new PrintWriter(socket.getOutputStream());
+        this.output = new PrintWriter(socket.getOutputStream(), true);
         this.input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
     }
 
     public boolean login(String userName, String password) throws IOException {
-        output.println(userName + " " + password + "\n");
+        output.println("login " + userName + " " + password);
 
-        if (input.readLine() == "logOn") {
-            System.out.println(getName() + " logged on successfully.");
+        if (input.readLine().equals("ok")) {
+            System.out.println(getName(userName) + " logged on successfully.");
             return true;
         }
 
@@ -29,13 +29,13 @@ public class Request {
         return false;
     }
 
-    public boolean register(String userName, String name, String password) {
+    public boolean createRegister(String userName, String name, String password) {
 
-        output.println("register " + userName + " " + name + " " + password + "\n");
+        output.println("register " + userName + " " + name + " " + password);
 
         try {
-            if (input.readLine() == "Register") {
-                System.out.println(getName() + " register on successfully.");
+            if (input.readLine().equals("Register") ) {
+                System.out.println(getName(userName) + " register on successfully.");
                 return true;
             }
         } catch (IOException e) {
@@ -45,9 +45,62 @@ public class Request {
         return false;
     }
 
-    public String getName() throws IOException {
-        output.println("get name");
+    public String getUserName() throws IOException {
+        output.println("getUserName");
 
         return input.readLine();
+    }
+
+    public boolean writeUserName(String userName) throws IOException {
+        output.println("post userName " + userName);
+
+        return (input.readLine() == "ok");
+    }
+
+    public String getName(String userName) throws IOException {
+        output.println("get " + userName + " name");
+
+        return input.readLine();
+    }
+
+    public boolean writeName(String name) throws IOException {
+        output.println("post name " + name);
+
+        return (input.readLine() == "ok");
+    }
+
+    public int getAge() throws IOException {
+        output.println("get age");
+
+        return Integer.parseInt(input.readLine());
+    }
+
+    public boolean writeAge(int age) throws IOException {
+        output.println("post age " + age);
+
+        return (input.readLine() == "ok");
+    }
+
+    public String getBirthday() throws IOException {
+        output.println("get birthday");
+
+        return input.readLine();
+    }
+
+    public boolean writeBirthday(String birthday) throws IOException {
+        output.println("post birthday " + birthday);
+
+        return (input.readLine() == "ok");
+    }
+    public String getMessage() throws IOException {
+        output.println("get message");
+
+        return input.readLine();
+    }
+
+    public boolean writeMessage(String message) throws IOException {
+        output.println("post message " + message);
+
+        return (input.readLine() == "ok");
     }
 }
