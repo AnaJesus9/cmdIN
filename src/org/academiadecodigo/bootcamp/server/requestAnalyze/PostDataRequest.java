@@ -14,10 +14,15 @@ public class PostDataRequest implements RequestAnalyzer {
         */
         String[] requestHandler = request.split(" ");
 
+        if (requestHandler.length != 3) {
+
+        }
+
+
         //return a message confirming whether data was updated successfully or not
 
-        if(/*successful*/ true) {
-            return "success";
+        if(/*successful*/ ) {
+            return "ok";
         }
         return "fail";
     }
