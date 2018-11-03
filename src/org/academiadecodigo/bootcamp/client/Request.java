@@ -45,9 +45,21 @@ public class Request {
         return false;
     }
 
+    public String getUserName() throws IOException {
+        output.println("getUserName");
+
+        return input.readLine();
+    }
+
     public String getName() throws IOException {
         output.println("get name");
 
         return input.readLine();
+    }
+
+    public int getAge() throws IOException {
+        output.println("get age");
+
+        return Integer.parseInt(input.readLine());
     }
 }
