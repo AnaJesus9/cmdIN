@@ -29,7 +29,7 @@ public class Request {
         return false;
     }
 
-    public boolean register(String userName, String name, String password) {
+    public boolean createRegister(String userName, String name, String password) {
 
         output.println("register " + userName + " " + name + " " + password + "\n");
 
@@ -51,15 +51,56 @@ public class Request {
         return input.readLine();
     }
 
+    public boolean writeUserName(String userName) throws IOException {
+        output.println("post userName " + userName);
+
+        return (input.readLine() == "ok");
+    }
+
     public String getName() throws IOException {
         output.println("get name");
 
         return input.readLine();
     }
 
+    public boolean writeName(String name) throws IOException {
+        output.println("post name " + name);
+
+        return (input.readLine() == "ok");
+    }
+
     public int getAge() throws IOException {
         output.println("get age");
 
         return Integer.parseInt(input.readLine());
+    }
+
+    public boolean writeAge(int age) throws IOException {
+        output.println("post age " + age);
+
+        return (input.readLine() == "ok");
+    }
+
+    public String getBirthday() throws IOException {
+        output.println("get birthday");
+
+        return input.readLine();
+    }
+
+    public boolean writeBirthday(String birthday) throws IOException {
+        output.println("post birthday " + birthday);
+
+        return (input.readLine() == "ok");
+    }
+    public String getMessage() throws IOException {
+        output.println("get message");
+
+        return input.readLine();
+    }
+
+    public boolean writeMessage(String message) throws IOException {
+        output.println("post message " + message);
+
+        return (input.readLine() == "ok");
     }
 }
