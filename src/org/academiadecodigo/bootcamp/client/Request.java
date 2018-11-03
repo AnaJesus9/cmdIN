@@ -13,15 +13,15 @@ public class Request {
 
 
     public Request(Socket socket) throws IOException {
-        this.output = new PrintWriter(socket.getOutputStream());
+        this.output = new PrintWriter(socket.getOutputStream(), true);
         this.input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
     }
 
     public boolean login(String userName, String password) throws IOException {
-        output.println(userName + " " + password + "\n");
+        output.println("login " + userName + " " + password);
 
-        if (input.readLine() == "logOn") {
-            System.out.println(getName() + " logged on successfully.");
+        if (input.readLine().equals("ok")) {
+            System.out.println(getName(userName) + " logged on successfully.");
             return true;
         }
 
@@ -31,11 +31,11 @@ public class Request {
 
     public boolean createRegister(String userName, String name, String password) {
 
-        output.println("register " + userName + " " + name + " " + password + "\n");
+        output.println("register " + userName + " " + name + " " + password);
 
         try {
-            if (input.readLine() == "Register") {
-                System.out.println(getName() + " register on successfully.");
+            if (input.readLine().equals("Register") ) {
+                System.out.println(getName(userName) + " register on successfully.");
                 return true;
             }
         } catch (IOException e) {
@@ -57,8 +57,8 @@ public class Request {
         return (input.readLine() == "ok");
     }
 
-    public String getName() throws IOException {
-        output.println("get name");
+    public String getName(String userName) throws IOException {
+        output.println("get " + userName + " name");
 
         return input.readLine();
     }

@@ -17,14 +17,16 @@ public class Menu {
     private Request request;
 
 
-    public Menu(Socket socket) throws IOException {
+    public Menu(Request request) throws IOException {
         this.prompt = new Prompt(System.in, System.out);
+        this.request = request;
     }
 
     public Integer getLogin() throws IOException{
         MenuInputScanner input = new MenuInputScanner(LOGIN);
 
         input.setMessage("Welcome to cmdIN\n What do you wanna do?");
+
         switch (prompt.getUserInput(input)) {
             case 1:
                 dispatchLogin();
@@ -46,10 +48,13 @@ public class Menu {
         inputUser.setMessage("Enter your username: ");
         inputPassword.setMessage("Enter your password: ");
 
-        while (!request.login(userName, password)) {
+        while (true) {
 
             userName = prompt.getUserInput(inputUser);
             password = prompt.getUserInput(inputPassword);
+            if (request.login(userName, password)) {
+                break;
+            }
         }
         getMainMenu(userName);
     }
@@ -81,7 +86,7 @@ public class Menu {
 
     private void getMainMenu(String userName) throws IOException {
         MenuInputScanner inputOption = new MenuInputScanner(MAIN_MENU);
-        String name = request.getName();
+        String name = request.getName(userName);
 
         inputOption.setMessage("### Welcome " + name + ", your on the Main Menu ###");
         prompt.getUserInput(inputOption);
