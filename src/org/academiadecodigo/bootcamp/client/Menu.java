@@ -62,8 +62,11 @@ public class Menu {
 
 
     public void dispatchRegister() {
-        MenuInputScanner input = new MenuInputScanner(MAIN_MENU);
-        input.setMessage("Choose an option:");
+        String userName = "";
+        String password = "";
+        String name = "";
+
+        StringInputScanner input = new StringInputScanner();
 
         StringBuilder welcomeMessage = new StringBuilder();
         welcomeMessage.append("### Welcome to Register in cmdIN ###\n");
@@ -71,17 +74,22 @@ public class Menu {
         welcomeMessage.append("### Enjoy cmdIN ###\n");
         System.out.println(welcomeMessage.toString());
 
-        switch (prompt.getUserInput(input)) {
-            case 1:
-                getEditMenu();
+        while (true) {
+
+            input.setMessage("Enter a user name: ");
+            name = prompt.getUserInput(input);
+
+            input.setMessage("Enter your password: ");
+            password = prompt.getUserInput(input);
+
+            input.setMessage("Enter your name: ");
+            name = prompt.getUserInput(input);
+
+            if (request.createRegister(userName, name, password)) {
                 break;
-            case 2:
-                //getSearchMenu();
-                break;
-            case 3:
+            }
         }
-
-
+        getMainMenu(userName);
     }
 
     private void getMainMenu(String userName) throws IOException {
@@ -90,6 +98,16 @@ public class Menu {
 
         inputOption.setMessage("### Welcome " + name + ", your on the Main Menu ###");
         prompt.getUserInput(inputOption);
+
+        switch (prompt.getUserInput(inputOption)) {
+            case 1:
+                getEditMenu();
+                break;
+            case 2:
+                //getSearchMenu();
+                break;
+            case 3:
+        }
     }
 
     private void getEditMenu() {
