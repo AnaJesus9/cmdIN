@@ -8,14 +8,19 @@ public class LoginRequest implements RequestAnalyzer {
     @Override
     public String analyze(ProfileManager profileManager, String request) {
 
-        //compare request userName and password to existing usernames and corresponding passwords
-
+        String[] requestHandler = request.split(" ");
+        if(requestHandler.length != 3) {
+            return "error";
+        }
+        String username = requestHandler[1];
+        String password = requestHandler[2];
 
         for (Profile profile: profileManager.getProfiles().values()) {
-            if (profile.getUsername().equals(request) /* && requestPass = userPass */) {
-                return "validLogin";
+            if (profile.getUsername().equals(username) &&
+                    profile.getPassword().equals(password)) {
+                return "validate";
             }
         }
-        return "invalidLogin";
+        return "invalidlogin";
     }
 }
