@@ -3,7 +3,6 @@ package org.academiadecodigo.bootcamp.server.profiles;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Profile {
-
     @JsonProperty("username")
     private String username;
     @JsonProperty("name")
