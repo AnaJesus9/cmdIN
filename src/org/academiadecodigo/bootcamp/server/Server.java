@@ -93,7 +93,7 @@ public class Server {
             try {
                 String message = in.readLine();
                 analyzer = Command.getRequestType(message).getAnalyzer();
-                respond(analyzer.analyze(profileManager, message));
+                respond(analyzer.analyze(profileManager, this, message));
             } catch (IOException e) {
                 e.printStackTrace();
             }
