@@ -37,9 +37,7 @@ public class Request {
             if (input.readLine() == "Register") {
                 System.out.println(getName() + " register on successfully.");
                 return true;
-
-            } System.out.println("Your username or password is incorrect.");
-
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -47,9 +45,9 @@ public class Request {
         return false;
     }
 
-    public String getName () throws IOException {
-            output.println("get name");
+    public String getName() throws IOException {
+        output.println("get name");
 
-            return input.readLine();
-        }
+        return input.readLine();
     }
+}
