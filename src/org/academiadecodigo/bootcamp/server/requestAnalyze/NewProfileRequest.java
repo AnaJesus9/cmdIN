@@ -7,6 +7,8 @@ public class NewProfileRequest implements RequestAnalyzer {
 
     @Override
     public String analyze(ProfileManager profileManager, String request) {
-        return "success";
+
+
+        return "Register";
     }
 }

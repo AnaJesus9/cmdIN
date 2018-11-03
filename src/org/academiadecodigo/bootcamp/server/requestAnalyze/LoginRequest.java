@@ -18,7 +18,7 @@ public class LoginRequest implements RequestAnalyzer {
         for (Profile profile: profileManager.getProfiles().values()) {
             if (profile.getUsername().equals(username) &&
                     profile.getPassword().equals(password)) {
-                return "validate";
+                return "logOn";
             }
         }
         return "invalidlogin";
