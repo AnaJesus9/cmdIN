@@ -56,6 +56,11 @@ public class Menu {
 
 
     private void dispatchRegister() {
+        StringBuilder welcomeMessage = new StringBuilder();
+        welcomeMessage.append("### Welcome to Register in cmdIN ###");
+        welcomeMessage.append("### Please fill the contents carefully ###");
+        welcomeMessage.append("Enjoy cmdIN");
+        System.out.println(welcomeMessage.toString());
 
     }
 
