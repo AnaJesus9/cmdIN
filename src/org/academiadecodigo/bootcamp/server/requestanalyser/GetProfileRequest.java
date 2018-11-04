@@ -7,7 +7,7 @@ import org.academiadecodigo.bootcamp.server.profiles.ProfileManager;
 
 public class GetProfileRequest implements RequestAnalyser {
     @Override
-    public String analyze(ProfileManager profileManager, Server.ClientHandler sender, String request) {
+    public String analyze(Server server, Server.ClientHandler sender, String request) {
 
         String[] splitResult = request.split("::");
 
@@ -16,7 +16,7 @@ public class GetProfileRequest implements RequestAnalyser {
         }
 
         String userToProfile = splitResult[1];
-        Profile userProfile = profileManager.findByUsername(userToProfile);
+        Profile userProfile = server.getProfileManager().findByUsername(userToProfile);
 
         if(userProfile == null) {
             return "This user doesn't exist.\nend";

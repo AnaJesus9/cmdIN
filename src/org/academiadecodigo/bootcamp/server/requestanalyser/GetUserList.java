@@ -5,7 +5,7 @@ import org.academiadecodigo.bootcamp.server.profiles.ProfileManager;
 
 public class GetUserList implements RequestAnalyser {
     @Override
-    public String analyze(ProfileManager profileManager, Server.ClientHandler sender, String request) {
-        return profileManager.listAll();
+    public String analyze(Server server, Server.ClientHandler sender, String request) {
+        return server.getProfileManager().listAll();
     }
 }

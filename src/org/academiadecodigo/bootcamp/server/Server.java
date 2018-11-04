@@ -56,14 +56,17 @@ public class Server {
         }
     }
 
-    private void updateFile() {
+    public void updateFile() {
         file.write(profileManager);
     }
 
-    private void readFile() {
+    public void readFile() {
         file.read(profileManager);
     }
 
+    public ProfileManager getProfileManager() {
+        return profileManager;
+    }
 
     public class ClientHandler implements Runnable {
 
@@ -94,7 +97,7 @@ public class Server {
                     throw new IOException();
                 }
                 analyzer = Command.getRequestType(message).getAnalyser();
-                respond(analyzer.analyze(profileManager, this, message));
+                respond(analyzer.analyze(Server.this, this, message));
             } catch (IOException e) {
                 System.out.println("One client lost Connection.");
                 close();

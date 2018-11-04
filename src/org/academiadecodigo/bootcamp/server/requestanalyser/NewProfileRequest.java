@@ -7,7 +7,7 @@ import org.academiadecodigo.bootcamp.server.profiles.ProfileManager;
 public class NewProfileRequest implements RequestAnalyser {
 
     @Override
-    public String analyze(ProfileManager profileManager, Server.ClientHandler sender, String request) {
+    public String analyze(Server server , Server.ClientHandler sender, String request) {
 
         String[] requestHandler = request.split("::");
         if(requestHandler.length != 4) {
@@ -20,6 +20,8 @@ public class NewProfileRequest implements RequestAnalyser {
 
         Profile newProfile = new Profile(username, password, name, 0, "", "Nothing to display.");
 
-        return profileManager.add(newProfile);
+        String response = server.getProfileManager().add(newProfile);
+        server.updateFile();
+        return response;
     }
 }
