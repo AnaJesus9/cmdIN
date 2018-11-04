@@ -23,7 +23,7 @@ public class Server {
     private ExecutorService service;
     private List<ClientHandler> clientHandlerList;
 
-    public Server(int port) throws IOException {
+    public Server(int port) throws IllegalArgumentException, IOException {
         this.serverSocket = new ServerSocket(port);
         this.service = Executors.newCachedThreadPool();
         this.clientHandlerList = new LinkedList<>();
