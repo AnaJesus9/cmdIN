@@ -6,6 +6,7 @@ import org.academiadecodigo.bootcamp.scanners.string.PasswordInputScanner;
 import org.academiadecodigo.bootcamp.scanners.string.StringInputScanner;
 import java.io.*;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 
@@ -158,6 +159,8 @@ public class Menu {
             request.writeName(nName);
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            sleep(3000);
         }
     }
 
@@ -169,6 +172,9 @@ public class Menu {
             request.writeAge(nAge);
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            sleep(3000);
+            ClearScreen.clearScreen();
         }
     }
 
@@ -178,9 +184,17 @@ public class Menu {
             StringInputScanner newBirth = new StringInputScanner();
             newBirth.setMessage("Edit your birthday: ");
             String nBirth = prompt.getUserInput(newBirth);
+            DateFormat date = new SimpleDateFormat("dd/MM/yyyy");
+            date.setLenient(false);
+            date.parse(nBirth);
             request.writeBirthday(nBirth);
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (ParseException e) {
+            System.out.println("Invalid date format. Should be dd/MM/yyyy");
+        } finally {
+            sleep(3000);
+            ClearScreen.clearScreen();
         }
     }
 
@@ -192,6 +206,9 @@ public class Menu {
             request.writeMessage(nMessage);
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            sleep(3000);
+            ClearScreen.clearScreen();
         }
     }
 
@@ -203,6 +220,9 @@ public class Menu {
             request.writePassword(nPassword);
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            sleep(3000);
+            ClearScreen.clearScreen();
         }
     }
 
@@ -215,5 +235,13 @@ public class Menu {
 
     private void listUsers() throws IOException{
         request.listAll();
+    }
+
+    private void sleep(int milliseconds) {
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

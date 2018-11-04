@@ -47,49 +47,33 @@ public class Request {
         return input.readLine();
     }
 
-    public boolean writeName(String name) throws IOException {
+    public void writeName(String name) throws IOException {
         output.println("post::name::" + name);
-        return (input.readLine() == "ok");
+        System.out.println(input.readLine());
     }
 
-    public int getAge() throws IOException {
-        output.println("get::age");
-        return Integer.parseInt(input.readLine());
-    }
 
-    public boolean writeAge(int age) throws IOException {
+    public void writeAge(int age) throws IOException {
         output.println("post::age::" + age);
-
-        return (input.readLine() == "ok");
+        System.out.println(input.readLine());
     }
 
-    public String getBirthday() throws IOException {
-        output.println("get::birthday");
 
-        return input.readLine();
-    }
-
-    public boolean writeBirthday(String birthday) throws IOException {
+    public void writeBirthday(String birthday) throws IOException {
         output.println("post::birthday::" + birthday);
-
-        return (input.readLine() == "ok");
-    }
-    public String getMessage() throws IOException {
-        output.println("get::message");
-
-        return input.readLine();
+        System.out.println(input.readLine());
     }
 
-    public boolean writeMessage(String message) throws IOException {
+    public void writeMessage(String message) throws IOException {
         output.println("post::message::" + message);
-
-        return (input.readLine() == "ok");
+        System.out.println(input.readLine());
     }
 
-    public boolean writePassword(String password) throws IOException{
+    public void writePassword(String password) throws IOException{
         output.println("post::password::" + password);
-        return (input.readLine() == "ok");
+        System.out.println(input.readLine());
     }
+
     public void getProfile(String username) throws IOException{
         output.println("getProfile::" + username);
         System.out.println("\n\n");
