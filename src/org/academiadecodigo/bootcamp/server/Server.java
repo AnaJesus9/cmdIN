@@ -106,6 +106,7 @@ public class Server {
         }
 
         public void respond(String response) {
+            System.out.println("server response is: '" + response + "'");
             out.println(response);
         }
 

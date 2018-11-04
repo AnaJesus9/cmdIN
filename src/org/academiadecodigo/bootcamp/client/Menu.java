@@ -13,6 +13,7 @@ public class Menu {
 
     private final String[] LOGIN = {"Login", "Register"};
     private final String[] MAIN_MENU = {"Edit Profile", "Search" , "Logout", "Quit"};
+    private final String[] SEARCH_MENU = {"List profiles", "View profile"};
     private Prompt prompt;
     private Request request;
     private String userName;
@@ -166,7 +167,19 @@ public class Menu {
         }
     }
 
-    private void getSearhMenu() {
+    private void getSearhMenu() throws IOException {
+        MenuInputScanner inputOption = new MenuInputScanner(SEARCH_MENU);
+        inputOption.setMessage("Choose an option:");
 
+        switch(prompt.getUserInput(inputOption)) {
+            case 1:
+                request.getList();
+                break;
+            case 2:
+
+                break;
+
+        }
+        getMainMenu();
     }
 }

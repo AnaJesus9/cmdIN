@@ -104,4 +104,15 @@ public class Request {
 
         return (input.readLine().equals("ok"));
     }
+
+    public String getList() throws IOException {
+        StringBuilder builder = new StringBuilder();
+
+        output.println();
+
+        while (!input.readLine().isEmpty()) {
+            builder.append(input.readLine());
+        }
+        return builder.toString();
+    }
 }

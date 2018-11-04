@@ -20,11 +20,14 @@ public class LoginRequest implements RequestAnalyzer {
 
             return "User doesn't exist.";
         }
+        System.out.println("just before profile.getUsername().equals(username)");
+        System.out.println(profile.getUsername().equals(username));
         if (profile.getUsername().equals(username) &&
                 profile.getPassword().equals(password)) {
             sender.setProfile(profile);
             return "Login was a success.";
         } else {
+            System.out.println("inside else");
             return "Wrong username/password";
         }
     }
