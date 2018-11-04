@@ -4,6 +4,14 @@ import org.academiadecodigo.bootcamp.server.Server;
 import org.academiadecodigo.bootcamp.server.profiles.Profile;
 import org.academiadecodigo.bootcamp.server.profiles.ProfileManager;
 
+import javax.print.attribute.standard.DateTimeAtCreation;
+import javax.swing.text.DateFormatter;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class PostDataRequest implements RequestAnalyser {
 
     @Override
@@ -26,7 +34,17 @@ public class PostDataRequest implements RequestAnalyser {
                 server.updateFile();
                 return "Name updated.";
             case "birthday":
+
+                int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+                String[] dateHandler = updateContent.split("/");
+                int birthdayYear = Integer.parseInt(dateHandler[2]);
+
+                if (dateHandler.length != 3 || birthdayYear > currentYear) {
+                    return "Wrong birthday format";
+                }
+
                 userProfile.setBirthday(updateContent);
+                userProfile.setAge(currentYear - birthdayYear);
                 server.updateFile();
                 return "birthday updated.";
             case "age":
