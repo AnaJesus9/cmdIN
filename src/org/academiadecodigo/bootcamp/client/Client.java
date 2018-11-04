@@ -12,6 +12,7 @@ public class Client {
 
         if (args.length != 2) {
             System.err.println("Usage: java -jar cmdINclient <host> <port>");
+            System.exit(1);
         }
 
         Client client = new Client();
