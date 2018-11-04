@@ -21,7 +21,6 @@ public enum Command {
     public static Command getRequestType(String request) {
 
         String[] requestHandler = request.split("::");
-        System.out.println(requestHandler[0]);
 
         if(requestHandler[0].equals("list")) {
             return GETUSERLIST;

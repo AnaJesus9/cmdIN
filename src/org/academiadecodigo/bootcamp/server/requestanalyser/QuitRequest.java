@@ -6,7 +6,7 @@ import org.academiadecodigo.bootcamp.server.profiles.ProfileManager;
 public class QuitRequest implements RequestAnalyser {
 
     @Override
-    public String analyze(ProfileManager profileManager, Server.ClientHandler sender, String request) {
+    public String analyze(Server server, Server.ClientHandler sender, String request) {
         return "exit";
     }
 }

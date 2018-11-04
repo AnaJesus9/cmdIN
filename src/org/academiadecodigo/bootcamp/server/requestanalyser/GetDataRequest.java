@@ -8,7 +8,7 @@ public class GetDataRequest implements RequestAnalyser {
 
 
     @Override
-    public String analyze(ProfileManager profileManager, Server.ClientHandler sender, String request) {
+    public String analyze(Server server, Server.ClientHandler sender, String request) {
         String[] requestHandler = request.split("::");
 
         if (requestHandler.length != 3) {
@@ -17,7 +17,7 @@ public class GetDataRequest implements RequestAnalyser {
 
         String targetUsername = requestHandler[1];
 
-        Profile tempProfile = profileManager.findByUsername(targetUsername);
+        Profile tempProfile = server.getProfileManager().findByUsername(targetUsername);
 
         switch (requestHandler[2]) {
             case "name":

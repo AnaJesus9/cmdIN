@@ -5,5 +5,5 @@ import org.academiadecodigo.bootcamp.server.profiles.ProfileManager;
 
 public interface RequestAnalyser {
 
-    String analyze(ProfileManager profileManager, Server.ClientHandler sender, String request);
+    String analyze(Server server, Server.ClientHandler sender, String request);
 }

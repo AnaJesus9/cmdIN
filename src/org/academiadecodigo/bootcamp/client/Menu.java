@@ -5,6 +5,8 @@ import org.academiadecodigo.bootcamp.scanners.menu.MenuInputScanner;
 import org.academiadecodigo.bootcamp.scanners.string.PasswordInputScanner;
 import org.academiadecodigo.bootcamp.scanners.string.StringInputScanner;
 import java.io.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 
 public class Menu {
@@ -32,7 +34,7 @@ public class Menu {
         ClearScreen.clearScreen();
         MenuInputScanner input = new MenuInputScanner(LOGIN);
 
-        input.setMessage("*** Welcome to cmdIN! *** \n" +
+        input.setMessage(" ↠ ⋆ Welcome to cmdIN © ⋆ ↞\n" +
                 "What do you wanna do?");
 
         switch (prompt.getUserInput(input)) {
@@ -75,20 +77,20 @@ public class Menu {
 
     public void dispatchRegister() {
         StringBuilder welcomeMessage = new StringBuilder();
-        welcomeMessage.append("    ** Welcome to Register in cmdIN **\n");
+        welcomeMessage.append("    ** Welcome to Register in cmdIN © **\n");
         welcomeMessage.append("*** Please fill the contents carefully ***\n");
-        welcomeMessage.append("        ----> Enjoy cmdIN <----\n");
+        welcomeMessage.append("        ↪ Enjoy cmdIN ↩ \n");
         System.out.println(welcomeMessage.toString());
 
         StringInputScanner input = new StringInputScanner();
-        input.setMessage("Type your username: ");
+        input.setMessage(" ➢ Type your username: ");
 
         String username = prompt.getUserInput(input);
 
-        input.setMessage("Type your name: ");
+        input.setMessage(" ➢ Type your name: ");
         String name = prompt.getUserInput(input);
 
-        input.setMessage("Type your password: ");
+        input.setMessage(" ➢ Type your password: ");
         String password = prompt.getUserInput(input);
 
         request.createRegister(username, name, password);
@@ -99,7 +101,7 @@ public class Menu {
         MenuInputScanner inputOption = new MenuInputScanner(MAIN_MENU);
         String name = request.getName(userName);
 
-        inputOption.setMessage("### Welcome " + name + ", you're on the Main Menu ###");
+        inputOption.setMessage(" ⁂ ◉ Welcome " + name + ", you're on the Menu  ◉ ⁂");
 
         switch (prompt.getUserInput(inputOption)) {
             case 1:
@@ -172,8 +174,9 @@ public class Menu {
 
     private void editBirthday(){
 
-        try { StringInputScanner newBirth = new StringInputScanner();
-            newBirth.setMessage("Edit your birthaday: ");
+        try {
+            StringInputScanner newBirth = new StringInputScanner();
+            newBirth.setMessage("Edit your birthday: ");
             String nBirth = prompt.getUserInput(newBirth);
             request.writeBirthday(nBirth);
         } catch (IOException e) {

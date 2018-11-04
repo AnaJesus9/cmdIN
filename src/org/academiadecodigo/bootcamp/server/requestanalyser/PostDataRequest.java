@@ -7,7 +7,7 @@ import org.academiadecodigo.bootcamp.server.profiles.ProfileManager;
 public class PostDataRequest implements RequestAnalyser {
 
     @Override
-    public String analyze(ProfileManager profileManager, Server.ClientHandler user, String request) {
+    public String analyze(Server server, Server.ClientHandler user, String request) {
 
         String[] requestHandler = request.split("::");
 
@@ -18,21 +18,25 @@ public class PostDataRequest implements RequestAnalyser {
         String targetField = requestHandler[1];
         String updateContent = requestHandler[2];
 
-        Profile userProfile = profileManager.findByUsername(user.getProfile().getUsername());
+        Profile userProfile = server.getProfileManager().findByUsername(user.getProfile().getUsername());
 
         switch (targetField) {
             case "name":
                 userProfile.setName(updateContent);
+                server.updateFile();
                 return "Name updated.";
             case "birthday":
                 userProfile.setBirthday(updateContent);
+                server.updateFile();
                 return "birthday updated.";
             case "age":
                 int age = Integer.parseInt(requestHandler[2]);
                 userProfile.setAge(age);
+                server.updateFile();
                 return "Age updated.";
             case "message":
                 userProfile.setMessage(updateContent);
+                server.updateFile();
                 return "Message update.";
             default:
                 return "fail";
