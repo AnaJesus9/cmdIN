@@ -4,8 +4,8 @@ import org.academiadecodigo.bootcamp.server.file.FileManager;
 import org.academiadecodigo.bootcamp.server.file.FileManagerInt;
 import org.academiadecodigo.bootcamp.server.profiles.Profile;
 import org.academiadecodigo.bootcamp.server.profiles.ProfileManager;
-import org.academiadecodigo.bootcamp.server.requestAnalyze.Command;
-import org.academiadecodigo.bootcamp.server.requestAnalyze.RequestAnalyzer;
+import org.academiadecodigo.bootcamp.server.requestanalyser.Command;
+import org.academiadecodigo.bootcamp.server.requestanalyser.RequestAnalyser;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -68,7 +68,7 @@ public class Server {
     public class ClientHandler implements Runnable {
 
         private Socket socket;
-        private RequestAnalyzer analyzer;
+        private RequestAnalyser analyzer;
         private BufferedReader in;
         private PrintWriter out;
         private Profile profile;
@@ -93,7 +93,7 @@ public class Server {
                 if(message == null){
                     throw new IOException();
                 }
-                analyzer = Command.getRequestType(message).getAnalyzer();
+                analyzer = Command.getRequestType(message).getAnalyser();
                 respond(analyzer.analyze(profileManager, this, message));
             } catch (IOException e) {
                 System.out.println("One client lost Connection.");
@@ -101,7 +101,7 @@ public class Server {
             }
         }
 
-        public void respond(String response) {
+        private void respond(String response) {
             out.println(response);
         }
 
@@ -114,7 +114,7 @@ public class Server {
             }
         }
 
-        public void close() {
+        private void close() {
 
             try {
                 socket.close();

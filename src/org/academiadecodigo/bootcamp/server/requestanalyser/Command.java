@@ -1,4 +1,4 @@
-package org.academiadecodigo.bootcamp.server.requestAnalyze;
+package org.academiadecodigo.bootcamp.server.requestanalyser;
 
 
 public enum Command {
@@ -8,14 +8,14 @@ public enum Command {
     GETUSERLIST(new GetUserList()),
     POSTDATA(new PostDataRequest()),
     CREATEPROFILE(new NewProfileRequest()),
-    QUIT(new QuitAnalyzer()),
+    QUIT(new QuitRequest()),
     ERROR(new Error());
 
 
-    private RequestAnalyzer analyzer;
+    private RequestAnalyser analyser;
 
-    Command (RequestAnalyzer analyzer) {
-        this.analyzer = analyzer;
+    Command (RequestAnalyser analyser) {
+        this.analyser = analyser;
     }
 
     public static Command getRequestType(String request) {
@@ -53,7 +53,7 @@ public enum Command {
         return ERROR;
     }
 
-    public RequestAnalyzer getAnalyzer() {
-        return this.analyzer;
+    public RequestAnalyser getAnalyser() {
+        return this.analyser;
     }
 }

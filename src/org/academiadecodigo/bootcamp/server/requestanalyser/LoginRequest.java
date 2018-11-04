@@ -1,10 +1,10 @@
-package org.academiadecodigo.bootcamp.server.requestAnalyze;
+package org.academiadecodigo.bootcamp.server.requestanalyser;
 
 import org.academiadecodigo.bootcamp.server.Server;
 import org.academiadecodigo.bootcamp.server.profiles.Profile;
 import org.academiadecodigo.bootcamp.server.profiles.ProfileManager;
 
-public class LoginRequest implements RequestAnalyzer {
+public class LoginRequest implements RequestAnalyser {
 
     @Override
     public String analyze(ProfileManager profileManager, Server.ClientHandler sender, String request) {

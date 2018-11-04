@@ -1,12 +1,11 @@
-package org.academiadecodigo.bootcamp.server.requestAnalyze;
+package org.academiadecodigo.bootcamp.server.requestanalyser;
 
 import org.academiadecodigo.bootcamp.server.Server;
 import org.academiadecodigo.bootcamp.server.profiles.ProfileManager;
 
-public class QuitAnalyzer implements RequestAnalyzer {
-
+public class GetUserList implements RequestAnalyser {
     @Override
     public String analyze(ProfileManager profileManager, Server.ClientHandler sender, String request) {
-        return "exit";
+        return profileManager.listAll();
     }
 }

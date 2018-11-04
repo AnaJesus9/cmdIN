@@ -1,11 +1,11 @@
-package org.academiadecodigo.bootcamp.server.requestAnalyze;
+package org.academiadecodigo.bootcamp.server.requestanalyser;
 
-import org.academiadecodigo.bootcamp.server.ProfileBuilder.ProfileBuilder;
+import org.academiadecodigo.bootcamp.server.profilebuilder.ProfileBuilder;
 import org.academiadecodigo.bootcamp.server.Server;
 import org.academiadecodigo.bootcamp.server.profiles.Profile;
 import org.academiadecodigo.bootcamp.server.profiles.ProfileManager;
 
-public class GetProfileRequest implements RequestAnalyzer {
+public class GetProfileRequest implements RequestAnalyser {
     @Override
     public String analyze(ProfileManager profileManager, Server.ClientHandler sender, String request) {
 

@@ -1,4 +1,4 @@
-package org.academiadecodigo.bootcamp.server.ProfileBuilder;
+package org.academiadecodigo.bootcamp.server.profilebuilder;
 
 import org.academiadecodigo.bootcamp.server.profiles.Profile;
 
