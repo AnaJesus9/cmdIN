@@ -57,11 +57,15 @@ public class Server {
     }
 
     public void updateFile() {
-        file.write(profileManager);
+        synchronized (ClientHandler.class) {
+            file.write(profileManager);
+        }
     }
 
     public void readFile() {
-        file.read(profileManager);
+        synchronized (ClientHandler.class) {
+            file.read(profileManager);
+        }
     }
 
     public ProfileManager getProfileManager() {
