@@ -61,7 +61,7 @@ public class Client {
         try {
             request = new Request(socket);
             menu = new Menu(request);
-            menu.getLogin();
+            menu.getLoginMenu();
         } catch (IOException e) {
             e.printStackTrace();
         }

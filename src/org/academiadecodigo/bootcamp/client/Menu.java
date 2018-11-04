@@ -1,28 +1,30 @@
 package org.academiadecodigo.bootcamp.client;
 
 import org.academiadecodigo.bootcamp.Prompt;
+import org.academiadecodigo.bootcamp.scanners.integer.IntegerInputScanner;
 import org.academiadecodigo.bootcamp.scanners.menu.MenuInputScanner;
 import org.academiadecodigo.bootcamp.scanners.string.PasswordInputScanner;
 import org.academiadecodigo.bootcamp.scanners.string.StringInputScanner;
 
 import java.io.*;
-import java.net.Socket;
 
 public class Menu {
 
 
     private final String[] LOGIN = {"Login", "Register"};
-    private final String[] MAIN_MENU = {"Edit Profile", "Search" , "Quit"};
+    private final String[] MAIN_MENU = {"Edit Profile", "Search" , "Logout", "Quit"};
     private Prompt prompt;
     private Request request;
+    private String userName;
 
 
     public Menu(Request request) throws IOException {
         this.prompt = new Prompt(System.in, System.out);
         this.request = request;
+        this.userName = "";
     }
 
-    public Integer getLogin() throws IOException{
+    public void getLoginMenu() throws IOException{
         MenuInputScanner input = new MenuInputScanner(LOGIN);
 
         input.setMessage("Welcome to cmdIN\n What do you wanna do?");
@@ -35,7 +37,6 @@ public class Menu {
                 dispatchRegister();
                 break;
         }
-        return prompt.getUserInput(input);
     }
 
     private void dispatchLogin() throws IOException {
@@ -56,12 +57,10 @@ public class Menu {
                 break;
             }
         }
-        getMainMenu(userName);
+        getMainMenu();
     }
 
-
-
-    public void dispatchRegister() {
+    public void dispatchRegister() throws IOException {
         String userName = "";
         String password = "";
         String name = "";
@@ -75,7 +74,6 @@ public class Menu {
         System.out.println(welcomeMessage.toString());
 
         while (true) {
-
             input.setMessage("Enter a user name: ");
             name = prompt.getUserInput(input);
 
@@ -89,10 +87,10 @@ public class Menu {
                 break;
             }
         }
-        getMainMenu(userName);
+        getMainMenu();
     }
 
-    private void getMainMenu(String userName) throws IOException {
+    private void getMainMenu() throws IOException {
         MenuInputScanner inputOption = new MenuInputScanner(MAIN_MENU);
         String name = request.getName(userName);
 
@@ -110,7 +108,65 @@ public class Menu {
         }
     }
 
-    private void getEditMenu() {
+    private void getEditMenu() throws IOException {
+        String name = request.getName(userName);
+        int age = request.getAge(userName);
+        String birthday = request.getBirthday();
+        String message = request.getMessage();
+
+        String[] editMenu = {   "'" + name + "' - Edit name",
+                                "'" + age + "' - Edit age",
+                                "'" + birthday + "' - Edit birthday",
+                                "'" + message + "' - Edit message"};
+
+        MenuInputScanner inputOption = new MenuInputScanner(editMenu);
+        inputOption.setMessage(name + " choose what you want to edit:");
+
+        StringInputScanner inputString = new StringInputScanner();
+        IntegerInputScanner inputInteger = new IntegerInputScanner();
+
+        switch (prompt.getUserInput(inputOption)) {
+            case 1:
+                while (true) {
+                    inputString.setMessage("Enter name: ");
+
+                    if (request.writeName(prompt.getUserInput(inputString))) {
+                        break;
+                    }
+                }
+                break;
+        case 2:
+        while (true) {
+                inputInteger.setMessage("Enter age: ");
+
+                    if (request.writeAge(prompt.getUserInput(inputInteger))) {
+                        break;
+                    }
+                break;
+                }
+            case 3:
+                while (true) {
+                    inputString.setMessage("Enter birthday: ");
+
+                    if (request.writeBirthday(prompt.getUserInput(inputString))) {
+                        break;
+                    }
+                break;
+                }
+            case 4:
+                while (true) {
+                    inputString.setMessage("Enter message: ");
+
+                    if (request.writeMessage(prompt.getUserInput(inputString))) {
+                        break;
+                    }
+                break;
+                }
+        getMainMenu();
+        }
+    }
+
+    private void getSearhMenu() {
 
     }
 }
