@@ -1,13 +1,13 @@
 <?xml version="1.0" ?>
-<project name="cmdINclient" default="jarfile">
+<project name="cmdINserver" default="jarfile">
 
     <!-- Initialize build properties  -->
     <target name="init" description="Initializes properties">
-        <property name="project.name" value="cmdINclient" />
+        <property name="project.name" value="cmdINserver" />
         <property name="src.dir" value="src" />
-        <property name="main.class" value="org.academiadecodigo.bootcamp.client.Client" />
-        <property name="build.dir" value="build" />
-	<property name="classes.dir" value="${build.dir}/classes/org/academiadecodigo/bootcamp/client" />
+        <property name="main.class" value="org.academiadecodigo.bootcamp.server.ServerLauncher" />
+        <property name="build.dir" value="buildserver" />
+	<property name="classes.dir" value="${build.dir}/classes/org/academiadecodigo/bootcamp/server" />
         <property name="lib.dir" value="lib" />
         <property name="resources.dir" value="resources"/>
         <path id="classpath">

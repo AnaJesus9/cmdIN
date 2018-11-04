@@ -1,5 +1,4 @@
 package org.academiadecodigo.bootcamp.client;
-import org.academiadecodigo.bootcamp.ClearScreen;
 import org.academiadecodigo.bootcamp.Prompt;
 import org.academiadecodigo.bootcamp.scanners.integer.IntegerInputScanner;
 import org.academiadecodigo.bootcamp.scanners.menu.MenuInputScanner;
