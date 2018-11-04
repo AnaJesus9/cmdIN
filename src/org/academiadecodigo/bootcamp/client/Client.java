@@ -8,7 +8,6 @@ public class Client {
 
     private Socket socket;
 
-
     public static void main(String[] args) {
 
         if (args.length != 2) {
@@ -31,9 +30,6 @@ public class Client {
         } finally {
             client.closeSocket();
         }
-
-
-
     }
 
     private void establishConnection(String  serverAddress, int serverPort) throws IOException {
@@ -61,7 +57,7 @@ public class Client {
         try {
             request = new Request(socket);
             menu = new Menu(request);
-            menu.getLogin();
+            menu.start();
         } catch (IOException e) {
             e.printStackTrace();
         }

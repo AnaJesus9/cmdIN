@@ -9,10 +9,9 @@ public class GetDataRequest implements RequestAnalyzer {
 
     @Override
     public String analyze(ProfileManager profileManager, Server.ClientHandler sender, String request) {
-        String[] requestHandler = request.split(" ");
+        String[] requestHandler = request.split("::");
 
-
-        if (requestHandler.length != 2) {
+        if (requestHandler.length != 3) {
             return "fail";
         }
 
@@ -32,9 +31,6 @@ public class GetDataRequest implements RequestAnalyzer {
                 return tempProfile.getMessage();
             default:
                 return "fail";
-
         }
-
-
     }
 }

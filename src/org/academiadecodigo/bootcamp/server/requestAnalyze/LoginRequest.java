@@ -9,9 +9,9 @@ public class LoginRequest implements RequestAnalyzer {
     @Override
     public String analyze(ProfileManager profileManager, Server.ClientHandler sender, String request) {
 
-        String[] requestHandler = request.split(" ");
+        String[] requestHandler = request.split("::");
         if (requestHandler.length != 3) {
-            return "Error.";
+            return "Login failed.";
         }
         String username = requestHandler[1];
         String password = requestHandler[2];

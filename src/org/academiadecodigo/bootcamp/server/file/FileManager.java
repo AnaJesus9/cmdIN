@@ -47,6 +47,5 @@ public class FileManager implements FileManagerInt {
                notifyAll();
            }
        }
-
     }
 }

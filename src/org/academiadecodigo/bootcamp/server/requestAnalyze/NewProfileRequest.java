@@ -6,23 +6,19 @@ import org.academiadecodigo.bootcamp.server.profiles.ProfileManager;
 
 public class NewProfileRequest implements RequestAnalyzer {
 
-
     @Override
     public String analyze(ProfileManager profileManager, Server.ClientHandler sender, String request) {
 
-
-        // request format: output.println("register " + userName + " " + name + " " + password + "\n");
-
-        String[] requestHandler = request.split(" ");
+        String[] requestHandler = request.split("::");
         if(requestHandler.length != 4) {
-            return "fail.";
+            return "Register failed.";
         }
 
         String username = requestHandler[1];
         String name = requestHandler[2];
         String password = requestHandler[3];
 
-        Profile newProfile = new Profile(username, password, name, 0, "asd", "asd");
+        Profile newProfile = new Profile(username, password, name, 0, "", "Nothing to display.");
 
         return profileManager.add(newProfile);
     }

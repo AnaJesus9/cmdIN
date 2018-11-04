@@ -26,7 +26,6 @@ public class Profile {
         this.message = message;
     }
 
-
     public String getPassword() {
         return password;
     }
@@ -37,10 +36,6 @@ public class Profile {
 
     public String getUsername() {
         return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getName() {

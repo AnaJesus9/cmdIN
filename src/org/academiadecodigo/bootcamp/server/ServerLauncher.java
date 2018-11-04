@@ -15,6 +15,5 @@ public class ServerLauncher {
             System.out.println("Error starting server! ");
             e.printStackTrace();
         }
-
     }
 }

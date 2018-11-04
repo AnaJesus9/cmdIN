@@ -21,23 +21,24 @@ public class ProfileManager implements ProfileInterface {
     public String add(Profile profile) {
         synchronized (this) {
             if (profiles.containsKey(profile.getUsername())) {
-                return "You can't create a profile with this username.";
+                return "Error: You can't create a profile with this username.";
             }
 
             profiles.put(profile.getUsername(), profile);
-            return "Your register was success.";
+            return "Your register was a success, " + profile.getName() + ".";
         }
     }
 
     @Override
     public String listAll() {
         if (profiles.isEmpty()) {
-            return "No users to show.";
+            return "No users to show. \nend";
         }
         StringBuilder stringBuilder = new StringBuilder();
         for (Profile profile : profiles.values()) {
             stringBuilder.append(profile.getUsername() + "\n");
         }
+        stringBuilder.append("end");
         return stringBuilder.toString();
     }
 

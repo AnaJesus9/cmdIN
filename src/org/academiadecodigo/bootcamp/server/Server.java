@@ -1,5 +1,6 @@
 package org.academiadecodigo.bootcamp.server;
 
+import org.academiadecodigo.bootcamp.server.file.FileManager;
 import org.academiadecodigo.bootcamp.server.file.FileManagerInt;
 import org.academiadecodigo.bootcamp.server.profiles.Profile;
 import org.academiadecodigo.bootcamp.server.profiles.ProfileManager;
@@ -16,10 +17,6 @@ import java.util.concurrent.Executors;
 
 public class Server {
 
-    /*
-    FileManager methods are returning strings
-     */
-
     private ServerSocket serverSocket;
     private ProfileManager profileManager;
     private FileManagerInt file;
@@ -30,11 +27,12 @@ public class Server {
         this.serverSocket = new ServerSocket(port);
         this.service = Executors.newCachedThreadPool();
         this.clientHandlerList = new LinkedList<>();
-
+        this.profileManager = new ProfileManager();
+        this.file = new FileManager();
     }
 
-
     public void start() {
+        readFile();
         while (true) {
             listen();
             System.out.println(clientHandlerList.size() + " clients currently connected");
@@ -53,11 +51,9 @@ public class Server {
             clientHandlerList.add(clientHandler);
             service.submit(clientHandler);
 
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     private void updateFile() {
@@ -95,13 +91,13 @@ public class Server {
             try {
                 String message = in.readLine();
                 if(message == null){
-                    close();
-                    return;
+                    throw new IOException();
                 }
                 analyzer = Command.getRequestType(message).getAnalyzer();
                 respond(analyzer.analyze(profileManager, this, message));
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println("One client lost Connection.");
+                close();
             }
         }
 
@@ -111,7 +107,6 @@ public class Server {
 
         @Override
         public void run() {
-
             initStreams();
 
             while (!socket.isClosed()) {
@@ -123,6 +118,7 @@ public class Server {
 
             try {
                 socket.close();
+                clientHandlerList.remove(this);
             } catch (IOException e) {
                 e.printStackTrace();
             }

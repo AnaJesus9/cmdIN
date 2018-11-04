@@ -4,6 +4,8 @@ package org.academiadecodigo.bootcamp.server.requestAnalyze;
 public enum Command {
     LOGIN(new LoginRequest()),
     GETDATA(new GetDataRequest()),
+    GETPROFILE(new GetProfileRequest()),
+    GETUSERLIST(new GetUserList()),
     POSTDATA(new PostDataRequest()),
     CREATEPROFILE(new NewProfileRequest()),
     QUIT(new QuitAnalyzer()),
@@ -18,7 +20,16 @@ public enum Command {
 
     public static Command getRequestType(String request) {
 
-        String[] requestHandler = request.split(" ");
+        String[] requestHandler = request.split("::");
+        System.out.println(requestHandler[0]);
+
+        if(requestHandler[0].equals("list")) {
+            return GETUSERLIST;
+        }
+
+        if(requestHandler[0].equals("getProfile")) {
+            return GETPROFILE;
+        }
 
         if (requestHandler[0].equals("quit")){
             return QUIT;
