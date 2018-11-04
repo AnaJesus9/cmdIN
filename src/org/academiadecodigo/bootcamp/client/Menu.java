@@ -1,9 +1,11 @@
 package org.academiadecodigo.bootcamp.client;
+
 import org.academiadecodigo.bootcamp.Prompt;
 import org.academiadecodigo.bootcamp.scanners.integer.IntegerInputScanner;
 import org.academiadecodigo.bootcamp.scanners.menu.MenuInputScanner;
 import org.academiadecodigo.bootcamp.scanners.string.PasswordInputScanner;
 import org.academiadecodigo.bootcamp.scanners.string.StringInputScanner;
+
 import java.io.*;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -13,7 +15,7 @@ import java.text.SimpleDateFormat;
 public class Menu {
 
     private final String[] LOGIN = {"Login", "Register", "Quit"};
-    private final String[] MAIN_MENU = {"Edit Profile", "Search" , "List Users", "Log Out"};
+    private final String[] MAIN_MENU = {"Edit Profile", "Search", "List Users", "Log Out"};
     private final String[] EDIT_PROFILE = {"Name", "Age", "Birthday", "Message", "Password", "Back"};
     private Prompt prompt;
     private Request request;
@@ -24,14 +26,14 @@ public class Menu {
         this.request = request;
     }
 
-    public void start() throws IOException{
+    public void start() throws IOException {
 
-        while(true) {
+        while (true) {
             getLogin();
         }
     }
 
-    public void getLogin() throws IOException{
+    public void getLogin() throws IOException {
         ClearScreen.clearScreen();
         MenuInputScanner input = new MenuInputScanner(LOGIN);
 
@@ -41,10 +43,10 @@ public class Menu {
         switch (prompt.getUserInput(input)) {
             case 1:
                 String userName = dispatchLogin();
-                if(userName != null) {
+                if (userName != null) {
                     boolean logout = false;
-                    while(!logout) {
-                       logout = getMainMenu(userName);
+                    while (!logout) {
+                        logout = getMainMenu(userName);
                     }
                 }
                 break;
@@ -58,7 +60,6 @@ public class Menu {
     }
 
     private String dispatchLogin() throws IOException {
-        ClearScreen.clearScreen();
         StringInputScanner inputUser = new StringInputScanner();
         PasswordInputScanner inputPassword = new PasswordInputScanner();
 
@@ -68,15 +69,20 @@ public class Menu {
         inputUser.setMessage("Enter your username: ");
         inputPassword.setMessage("Enter your password: ");
 
-            userName = prompt.getUserInput(inputUser);
-            password = prompt.getUserInput(inputPassword);
-            if (request.login(userName, password)) {
-                return userName;
-            }
-            return null;
+        userName = prompt.getUserInput(inputUser);
+        password = prompt.getUserInput(inputPassword);
+        if (request.login(userName, password)) {
+            sleep(3000);
+            ClearScreen.clearScreen();
+            return userName;
+        }
+        sleep(3000);
+        ClearScreen.clearScreen();
+        return null;
     }
 
     public void dispatchRegister() {
+        ClearScreen.clearScreen();
         StringBuilder welcomeMessage = new StringBuilder();
         welcomeMessage.append("    ** Welcome to Register in cmdIN © **\n");
         welcomeMessage.append("*** Please fill the contents carefully ***\n");
@@ -95,6 +101,9 @@ public class Menu {
         String password = prompt.getUserInput(input);
 
         request.createRegister(username, name, password);
+        sleep(3000);
+        ClearScreen.clearScreen();
+
     }
 
     private boolean getMainMenu(String userName) throws IOException {
@@ -107,8 +116,9 @@ public class Menu {
         switch (prompt.getUserInput(inputOption)) {
             case 1:
                 boolean back = false;
-                while(!back) {
-                  back = getEditProfile();
+                while (!back) {
+                    ClearScreen.clearScreen();
+                    back = getEditProfile();
                 }
                 break;
             case 2:
@@ -129,7 +139,7 @@ public class Menu {
         MenuInputScanner input = new MenuInputScanner(EDIT_PROFILE);
         input.setMessage("What do you wanna change?");
 
-        switch (prompt.getUserInput(input)){
+        switch (prompt.getUserInput(input)) {
             case 1:
                 editName();
                 break;
@@ -147,13 +157,15 @@ public class Menu {
                 break;
             case 6:
                 back = true;
+                ClearScreen.clearScreen();
         }
         return back;
     }
 
     private void editName() {
 
-        try { StringInputScanner newName = new StringInputScanner();
+        try {
+            StringInputScanner newName = new StringInputScanner();
             newName.setMessage("Edit your name: ");
             String nName = prompt.getUserInput(newName);
             request.writeName(nName);
@@ -161,12 +173,15 @@ public class Menu {
             e.printStackTrace();
         } finally {
             sleep(3000);
+            ClearScreen.clearScreen();
+
         }
     }
 
     private void editAge() {
 
-        try {IntegerInputScanner newAge = new IntegerInputScanner();
+        try {
+            IntegerInputScanner newAge = new IntegerInputScanner();
             newAge.setMessage("Edit your age: ");
             int nAge = prompt.getUserInput(newAge);
             request.writeAge(nAge);
@@ -178,7 +193,7 @@ public class Menu {
         }
     }
 
-    private void editBirthday(){
+    private void editBirthday() {
 
         try {
             StringInputScanner newBirth = new StringInputScanner();
@@ -198,9 +213,10 @@ public class Menu {
         }
     }
 
-    private void editMessage(){
+    private void editMessage() {
 
-        try { StringInputScanner newMessage = new StringInputScanner();
+        try {
+            StringInputScanner newMessage = new StringInputScanner();
             newMessage.setMessage("Edit your message: ");
             String nMessage = prompt.getUserInput(newMessage);
             request.writeMessage(nMessage);
@@ -212,9 +228,10 @@ public class Menu {
         }
     }
 
-    private void editPassword(){
+    private void editPassword() {
 
-        try {StringInputScanner newPassword = new StringInputScanner();
+        try {
+            StringInputScanner newPassword = new StringInputScanner();
             newPassword.setMessage("Edit your password: ");
             String nPassword = prompt.getUserInput(newPassword);
             request.writePassword(nPassword);
@@ -226,15 +243,19 @@ public class Menu {
         }
     }
 
-    private void search() throws IOException{
+    private void search() throws IOException {
+        ClearScreen.clearScreen();
         StringInputScanner search = new StringInputScanner();
         search.setMessage("Which user? ");
         String searchPerson = prompt.getUserInput(search);
         request.getProfile(searchPerson);
+        sleep(3000);
     }
 
-    private void listUsers() throws IOException{
+    private void listUsers() throws IOException {
+        ClearScreen.clearScreen();
         request.listAll();
+        sleep(3000);
     }
 
     private void sleep(int milliseconds) {
