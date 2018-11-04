@@ -8,6 +8,7 @@ public class ServerLauncher {
 
         if (args.length != 1) {
             System.err.println("Usage: java -jar cmdINserver <port>");
+            System.exit(1);
         }
 
         try {
