@@ -111,7 +111,7 @@ public class Menu {
         MenuInputScanner inputOption = new MenuInputScanner(MAIN_MENU);
         String name = request.getName(userName);
 
-        inputOption.setMessage(" ⁂ ◉ Welcome " + name + ", you're on the Menu  ◉ ⁂");
+        inputOption.setMessage(" ⁂ ◉  Welcome " + name + ", you're on the Menu  ◉ ⁂");
 
         switch (prompt.getUserInput(inputOption)) {
             case 1:
