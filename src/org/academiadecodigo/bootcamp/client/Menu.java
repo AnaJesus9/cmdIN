@@ -63,14 +63,15 @@ public class Menu {
         StringInputScanner inputUser = new StringInputScanner();
         PasswordInputScanner inputPassword = new PasswordInputScanner();
 
-        String userName = "";
-        String password = "";
+        String userName;
+        String password;
 
         inputUser.setMessage("Enter your username: ");
         inputPassword.setMessage("Enter your password: ");
 
         userName = prompt.getUserInput(inputUser);
         password = prompt.getUserInput(inputPassword);
+
         if (request.login(userName, password)) {
             sleep(3000);
             ClearScreen.clearScreen();
@@ -103,7 +104,6 @@ public class Menu {
         request.createRegister(username, name, password);
         sleep(3000);
         ClearScreen.clearScreen();
-
     }
 
     private boolean getMainMenu(String userName) throws IOException {
@@ -123,7 +123,6 @@ public class Menu {
                 break;
             case 2:
                 search();
-
                 break;
             case 3:
                 listUsers();
@@ -174,7 +173,6 @@ public class Menu {
         } finally {
             sleep(3000);
             ClearScreen.clearScreen();
-
         }
     }
 

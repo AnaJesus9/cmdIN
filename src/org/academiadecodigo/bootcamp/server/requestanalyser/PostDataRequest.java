@@ -17,6 +17,7 @@ public class PostDataRequest implements RequestAnalyser {
 
         String targetField = requestHandler[1];
         String updateContent = requestHandler[2];
+        System.out.println(targetField);
 
         Profile userProfile = server.getProfileManager().findByUsername(user.getProfile().getUsername());
 
@@ -30,14 +31,18 @@ public class PostDataRequest implements RequestAnalyser {
                 server.updateFile();
                 return "birthday updated.";
             case "age":
-                int age = Integer.parseInt(requestHandler[2]);
+                int age = Integer.parseInt(updateContent);
                 userProfile.setAge(age);
                 server.updateFile();
                 return "Age updated.";
             case "message":
                 userProfile.setMessage(updateContent);
                 server.updateFile();
-                return "Message update.";
+                return "Message updated.";
+            case "password":
+                userProfile.setPassword(updateContent);
+                server.updateFile();
+                return "Password updated.";
             default:
                 return "fail";
         }

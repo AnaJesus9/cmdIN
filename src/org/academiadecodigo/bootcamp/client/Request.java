@@ -37,11 +37,6 @@ public class Request {
         }
     }
 
-    public String getUserName() throws IOException {
-        output.println("getUserName");
-        return input.readLine();
-    }
-
     public String getName(String userName) throws IOException {
         output.println("get::" + userName + "::name");
         return input.readLine();
@@ -52,12 +47,10 @@ public class Request {
         System.out.println(input.readLine());
     }
 
-
     public void writeAge(int age) throws IOException {
         output.println("post::age::" + age);
         System.out.println(input.readLine());
     }
-
 
     public void writeBirthday(String birthday) throws IOException {
         output.println("post::birthday::" + birthday);
@@ -84,7 +77,6 @@ public class Request {
             }
             System.out.println(line);
         }
-
     }
 
     public void listAll() throws IOException{

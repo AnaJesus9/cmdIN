@@ -15,7 +15,5 @@ public class ProfileBuilder {
         stringBuilder.append("Message: " + profile.getMessage() + "\n\nend");
 
         return stringBuilder.toString();
-
-
     }
 }

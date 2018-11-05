@@ -10,7 +10,6 @@ public class ServerLauncher {
             System.err.println("Usage: java -jar cmdINserver <port>");
             System.exit(1);
         }
-
         try {
             Server server = new Server(Integer.parseInt(args[0]));
             server.start();

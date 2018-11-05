@@ -35,7 +35,6 @@ public class Client {
 
     private void establishConnection(String  serverAddress, int serverPort) throws IOException {
         socket = new Socket(serverAddress, serverPort);
-
         System.out.println("Connected to: " + socket.getReceiveBufferSize());
     }
 
@@ -52,8 +51,8 @@ public class Client {
     }
 
     private void run() {
-        Request request = null;
-        Menu menu = null;
+        Request request;
+        Menu menu;
 
         try {
             request = new Request(socket);
